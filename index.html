@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Video Analysis Platform</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #ffffff;
+            color: #000000;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        .hero {
+            margin-bottom: 20px;
+            padding: 20px;
+            width: 150%;
+            height: 20vh;
+            background-color: #000000;
+            color: #ffffff;
+            border-radius: 55px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .upload-box {
+            border: 2px dashed #000000;
+            padding: 40px;
+            cursor: pointer;
+            margin-top: 50px;
+            margin-bottom: 50px;
+            width: 80%;
+            height: 65vh; 
+            border-radius: 50px;
+            transition: background-color 0.3s;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .upload-box:hover {
+            background-color: #f0f0f0;
+        }
+        .features {
+            margin-top: 20px;
+            width: 100%;
+        }
+        .features h3 {
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #000000;
+            font-size: 2rem;
+        }
+        .features-item {
+            background-color: #ffffff;
+            border-radius: 55px;
+            padding: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-bottom: 30px;
+            width: 100%;
+            height: 80vh;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        .features-item h5 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        .features-item p {
+            font-size: 1.2rem;
+            margin-top: 10px;
+        }
+        .features-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+        footer {
+            background-color: #000000;
+            padding: 20px 0;
+            color: #ffffff;
+            text-align: center;
+            margin-top: auto;
+            width: 150%;
+        }
+        .btn-feature {
+            margin-top: 10px;
+            font-size: 1.2rem;
+            padding: 10px 20px;
+        }
+        @media (max-width: 768px) {
+            .upload-box {
+                padding: 20px;
+            }
+            .hero {
+                padding: 10px;
+            }
+            .features-item {
+                padding: 15px;
+            }
+        }
+        #loading {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Hero Section -->
+        <div class="hero">
+            <h1>Advanced Video Analysis Platform</h1>
+            <p>Unlock insights from your videos with cutting-edge machine learning and computer vision techniques.</p>
+        </div>
+
+        <!-- Upload Box -->
+        <div class="upload-box" id="upload-box">
+            <form id="uploadForm" action="/upload" method="post" enctype="multipart/form-data" onsubmit="return showLoading()">
+                <input type="file" name="video" required style="display: none;" id="file-input" onchange="showUploadAlert()">
+                <label for="file-input" class="btn btn-outline-dark">Click to upload or drag and drop</label>
+                <p>Supported formats: MP4, AVI, MOV (MAX. 800MB)</p>
+                <button type="submit" class="btn btn-dark">Analyze Video</button>
+            </form>
+        </div>
+
+        <!-- Loading Indicator -->
+        <div id="loading">
+            <p>Processing your video, please wait...</p>
+        </div>
+
+        <!-- Features Section -->
+        <div class="features">
+            <h1>Our Features</h1>
+            <h1>.</h1>
+            <div class="row">
+                <!-- Video Summarization Feature -->
+                <div class="col-md-12 features-item">
+                    <h5>🎥 Video Summarization</h5>
+                    <p>Extract key moments and create concise summaries of long videos.</p>
+                    <a href="videosumm.html" class="btn btn-dark btn-feature">Go to Video Summarization</a>
+                </div>
+                <!-- Object Detection Feature -->
+                <div class="col-md-12 features-item">
+                    <h5>🔍 Object Detection</h5>
+                    <p>Identify and track objects throughout your videos with precision.</p>
+                    <a href="object.html" class="btn btn-dark btn-feature">Go to Object Detection</a>
+                </div>
+                <!-- Video Skimming Feature -->
+                <div class="col-md-12 features-item">
+                    <h5>⚡ Video Skimming</h5>
+                    <p>Quickly navigate through video content with intelligent skimming technology.</p>
+                    <a href="videoskimm.html" class="btn btn-dark btn-feature">Go to Video Skimming</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <p>&copy; 2024 Advanced Video Analysis Platform. All rights reserved.</p>
+            <a href="#" class="text-white">Privacy Policy</a> | <a href="#" class="text-white">Terms of Service</a>
+        </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function showUploadAlert() {
+            alert("Video has been uploaded.");
+        }
+
+        function showLoading() {
+            document.getElementById('loading').style.display = 'block';
+
+            // Optionally delay the form submission to see the loading indicator
+            setTimeout(() => {
+                document.getElementById('uploadForm').submit();
+            }, 100); // Submit after a short delay
+
+            // Return false to prevent the form from submitting immediately
+            return false;
+        }
+    </script>
+</body>
+</html>
